@@ -6,6 +6,11 @@ namespace hiragana {
         return 0
     }
 
+    //% shim=hiragana::searchMoji
+    function searchMoji(s: string): number {
+        return 0
+    }
+
     const hiras: string = 'あいうえお';
     const kanas: string = 'アイウエオ';
 
@@ -70,10 +75,20 @@ namespace hiragana {
     /**
      * Get number
      */
-    //% blockId=envirobit_get_number
+    //% blockId=hiragana_get_number
     //% block="Get number"
     export function getNumber(): number {
         let n = addNumber(2);
+        return n;
+    }
+    
+    /**
+     * Test mojir
+     */
+    //% blockId=hiragana_test_moji
+    //% block="test moji"
+    export function testMoji(): number {
+        let n = searchMoji("A");
         return n;
     }
 }
