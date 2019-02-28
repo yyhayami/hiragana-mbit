@@ -88,7 +88,7 @@ namespace hiragana {
     //% blockId=hiragana_test_moji
     //% block="test moji"
     export function testMoji(): number {
-        let c = "A".charCodeAt(0);
+        let c = "B".charCodeAt(0);
         let n = searchMoji(c);
         return n;
     }

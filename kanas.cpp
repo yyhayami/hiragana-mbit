@@ -11,7 +11,10 @@ namespace hiragana {
   int32_t searchMoji(int32_t c)
   {
     char *s = "ABC";
-    int32_t n = c+1;
-		return n;
+    int32_t i;
+    while (s[i] <> 0) {}
+      i++;
+    }
+		return i;
 	}
 }
