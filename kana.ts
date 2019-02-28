@@ -7,7 +7,7 @@ namespace hiragana {
     }
 
     //% shim=hiragana::searchMoji
-    function searchMoji(s: string): number {
+    function searchMoji(n: number): number {
         return 0
     }
 
@@ -88,7 +88,8 @@ namespace hiragana {
     //% blockId=hiragana_test_moji
     //% block="test moji"
     export function testMoji(): number {
-        let n = searchMoji("A");
+        let c = "A".charCodeAt(0);
+        let n = searchMoji(c);
         return n;
     }
 }
