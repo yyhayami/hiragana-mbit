@@ -2,7 +2,9 @@
 using namespace pxt;
 
 namespace hiragana {
-  int32_t d[] = {4,5,6};
+  int32_t d[][] = {{1,2,3},
+  {4,5,6},
+  {7,8,9}};
   //%
   int32_t addNumber(int32_t n)
   {
@@ -19,8 +21,8 @@ namespace hiragana {
 	return i;
   }
   //%
-  int32_t retNumber(int32_t i)
+  int32_t retNumber(int32_t i,int32_t j)
   {
-	  return d[i];
+	  return d[i][j];
   }
 }

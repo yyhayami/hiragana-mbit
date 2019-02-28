@@ -12,7 +12,7 @@ namespace hiragana {
     }
 
     //% shim=hiragana::retNumber
-    function retNumber(i: number): number {
+    function retNumber(i: number, j: number): number {
         return 0
     }
     const hiras: string = 'あいうえお';
@@ -90,9 +90,9 @@ namespace hiragana {
      * Test mojir
      */
     //% blockId=hiragana_test_moji
-    //% block="test moji %i"
-    export function testMoji(i: number): number {
-        let n= retNumber(i);
+    //% block="test moji %i %j"
+    export function testMoji(i: number, j: number): number {
+        let n= retNumber(i, j);
         return n;
     }
 }
