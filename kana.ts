@@ -89,6 +89,6 @@ namespace hiragana {
     //% block="test moji"
     export function testMoji(): number {
         let n = searchMoji("A");
-        return n;
+        return 78;
     }
 }
