@@ -1,0 +1,19 @@
+{
+    "name": "hiragana",
+    "version": "0.0.1",
+    "description": "Hiragana Display for micro:bit",
+    "license": "MIT",
+    "dependencies": {
+        "core": "*"
+    },
+    "files": [
+        "README.md",
+        "kana.ts",
+        "shims.d.ts",
+        "kanas.cpp"
+    ],
+    "testFiles": [
+        "test.ts"
+    ],
+    "public": true
+}
