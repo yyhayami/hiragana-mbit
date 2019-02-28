@@ -2,7 +2,7 @@
 using namespace pxt;
 
 namespace hiragana {
-  int32_t d[][] = {{1,2,3},
+  int32_t d[3][3] = {{1,2,3},
   {4,5,6},
   {7,8,9}};
   
