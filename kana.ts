@@ -11,6 +11,10 @@ namespace hiragana {
         return 0
     }
 
+    //% shim=hiragana::retNumber
+    function retNumber() {
+        return 0
+    }
     const hiras: string = 'あいうえお';
     const kanas: string = 'アイウエオ';
 
@@ -86,10 +90,9 @@ namespace hiragana {
      * Test mojir
      */
     //% blockId=hiragana_test_moji
-    //% block="test moji"
-    export function testMoji(): number {
-        let c = "B".charCodeAt(0);
-        let n = searchMoji(c);
-        return n;
+    //% block="test moji %i"
+    export function testMoji(i: number): number {
+        let n[] = retNumber();
+        return n[i];
     }
 }

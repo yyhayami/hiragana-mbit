@@ -2,6 +2,7 @@
 using namespace pxt;
 
 namespace hiragana {
+  int32_t d[] = {4,5,6};
   //%
   int32_t addNumber(int32_t n)
   {
@@ -15,6 +16,11 @@ namespace hiragana {
     while (s[i] != 0) {
       i++;
     }
-		return i;
-	}
+	return i;
+  }
+  //%
+  int32_t[] retNumber()
+  {
+	  return d;
+  }
 }
