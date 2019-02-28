@@ -8,10 +8,10 @@ namespace hiragana {
 	  return n+1;
 	}
   //%
-  int32_t searchMoji(int16_t *s)
+  int32_t searchMoji(uint16_t *s)
   {
-    int16_t n;
-    n = 123;
+    uint16_t n;
+    n = s[0];
 		return n;
 	}
 }
