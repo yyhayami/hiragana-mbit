@@ -19,8 +19,8 @@ namespace hiragana {
 	return i;
   }
   //%
-  int32_t* retNumber()
+  int32_t retNumber(int32_t i)
   {
-	  return d;
+	  return d[i];
   }
 }
