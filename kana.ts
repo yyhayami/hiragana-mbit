@@ -1,5 +1,5 @@
 /**
-* HIRAGANA blocks
+* KANA blocks
 */
 enum DirEnum {
     //% block="horizontal"
@@ -10,8 +10,8 @@ enum DirEnum {
     None
 }
 
-//% weight=70 color=#1eb0f0 icon="\u3041" block="HIRAGANA"
-namespace hiragana {
+//% weight=70 color=#1eb0f0 icon="\u3041" block="KANA"
+namespace kana {
 
     //% shim=hiragana::getAlph
     function getAlph(n: number): number {
@@ -182,7 +182,7 @@ namespace hiragana {
     }
 
    /**
-     * Set t scroll time
+     * Set scroll time
      * @param t scroll time, eg: 200
      * @param d direction parameter, eg: DirNum.Horizontal
      */
@@ -204,11 +204,11 @@ namespace hiragana {
     }
 
     /**
-     * Display Moji
-     * @param s display string here, eg: ""
+     * Display KANA
+     * @param s Display kana string here, eg: ""
      */
-    //% block="Display Moji %s"
-    export function strDisplay(s: string) {
+    //% blockId=show_kana block="show KANA %s"
+    export function showKana(s: string) {
         let c: string;
         if (s.length == 1) {
             searchKana(s.substr(0, 1));
