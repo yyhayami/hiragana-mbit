@@ -13,17 +13,17 @@ enum DirEnum {
 //% weight=70 color=#1eb0f0 icon="\u3041" block="KANA"
 namespace kana {
 
-    //% shim=hiragana::getAlph
+    //% shim=kana::getAlph
     function getAlph(n: number): number {
         return 0;
     }
 
-    //% shim=hiragana::getKana
+    //% shim=kana::getKana
     function getKana(n: number): number {
         return 0;
     }
 
-    //% shim=hiragana::getHira
+    //% shim=kana::getHira
     function getHira(n: number): number {
         return 0;
     }
@@ -186,7 +186,7 @@ namespace kana {
      * @param t scroll time, eg: 200
      * @param d direction parameter, eg: DirNum.Horizontal
      */
-    //% blockId=set_scrolltime block="Set scroll %t %d"
+    //% blockId=set_scrolltime block="set scroll %t %d"
     //% expandableArgumentMode="toggle"
     export function setScroll(t: number, d:DirEnum) {
         scroll = t;
@@ -197,7 +197,7 @@ namespace kana {
      * Set bright
      * @param b number of bright, eg: 128
      */
-    //% blockId=set_bright block="Set bright %b"
+    //% blockId=set_bright block="set bright %b"
     export function setBright(b: number) {
         if (b <= 255 && b > 0)
             bright = b;
