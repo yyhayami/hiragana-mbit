@@ -1,69 +1,135 @@
-//% weight=100 color=#000000 icon="\uf043" block="HIRAGANA"
+/**
+* HIRAGANA blocks
+*/
+enum DirEnum {
+    //% block="horizontal"
+    Horizontal,
+    //% block="vertical"
+    Vertical,
+    //% block="none"
+    None
+}
+
+//% weight=70 color=#1eb0f0 icon="\u3041" block="HIRAGANA"
 namespace hiragana {
 
-    //% shim=hiragana::addNumber
-    function addNumber(n: number): number {
-        return 0
+    //% shim=hiragana::getAlph
+    function getAlph(n: number): number {
+        return 0;
     }
 
-    //% shim=hiragana::searchMoji
-    function searchMoji(n: number): number {
-        return 0
+    //% shim=hiragana::getKana
+    function getKana(n: number): number {
+        return 0;
     }
 
-    //% shim=hiragana::retNumber
-    function retNumber(i: number, j: number): number {
-        return 0
+    //% shim=hiragana::getHira
+    function getHira(n: number): number {
+        return 0;
     }
-    const hiras: string = 'あいうえお';
-    const kanas: string = 'アイウエオ';
 
-    const kana1 = [[0x10, 0x11, 0x1E, 0x14, 0x18],
-    [0x4, 0x4, 0xF, 0x8, 0x10],
-    [0xC, 0x9, 0x19, 0x9, 0xE],
-    [0x1, 0x11, 0x1F, 0x11, 0x1],
-    [0x9, 0xA, 0xC, 0x1F, 0x8]];
-
-    const hira1 = [[0xB, 0x1D, 0xA, 0x4, 0xB],
-    [0x1E, 0x1, 0x2, 0x10, 0xE],
-    [0x8, 0x19, 0x19, 0x9, 0x6],
-    [0x9, 0x1A, 0x1A, 0xD, 0x9],
-    [0xB, 0x1F, 0xA, 0x2, 0x9]];
+    const alphs1 = "　！＂＃＄％＆＇（）＊＋，－．／０１２３４５６７８９：；＜＝＞？＠ＡＢＣＤＥＦＧＨＩＪＫＬＭＮＯＰＱＲＳＴＵＶＷＸＹＺ［＼］＾＿｀";
+    const len = 65;
+    const kanas1 = "ァアィイゥウェエォオカガキギクグケゲコゴサザシジスズセゼソゾタダチヂッツヅテデトドナニヌネノハバパヒビピフブプヘベペホポボマミムメモャヤュユョヨラリルレロヮワヰヱヲンヴヵヶヷヸヹヺーヽヾ";
+    const hiras1 = "ぁあぃいぅうぇえぉおかがきぎくぐけげこごさざしじすずせぜそぞただちぢっつづてでとどなにぬねのはばぱひびぴふぶぷへべぺほぽぼまみむめもゃやゅゆょよらりるれろゎわゐゑをんゔゕゖ゛゜ゝゞ";
 
     let im = [0, 0, 0, 0, 0,
         0, 0, 0, 0, 0,
         0, 0, 0, 0, 0,
         0, 0, 0, 0, 0,
         0, 0, 0, 0, 0,
+        0, 0, 0, 0, 0,
+        0, 0, 0, 0, 0,
+        0, 0, 0, 0, 0,
+        0, 0, 0, 0, 0,
+        0, 0, 0, 0, 0,
+        0, 0, 0, 0, 0
     ];
 
     let bright = 255;
+    let scroll = 200;
+    let dir: DirEnum = DirEnum.Horizontal;
+    let imm: number;
 
-    function setBright(b: number) {
-        if (b <= 255 && b > 0)
-            bright = b;
-    }
 
     function searchKana(s: string) {
         let n = -1;
-        let m: number[] = [0, 0, 0, 0, 0];
+        imm = 0;
 
-        if (s <= "お") {
-            n = hiras.indexOf(s);
-            serial.writeNumber(n);
-            serial.writeLine("")
-            m = hira1[n];
-        } else if (s <= "オ") {
-            n = kanas.indexOf(s);
-            serial.writeNumber(n);
-            serial.writeLine("")
-            m = kana1[n];
+        if (s <= "｀") {
+            for (n = 0; n < len; n++) {
+                if (s == alphs1.substr(n, 1)) {
+                    break;
+                }
+            }
+            if (n == len) {
+                return;
+            }
+            imm = getAlph(n);
+        } else if (s <= "ゞ") {
+            n = hiras1.indexOf(s);
+            if (n == -1) {
+                return;
+            }
+            imm = getHira(n);
+        } else if (s <= "ヾ") {
+            n = kanas1.indexOf(s);
+            if (n == -1) {
+                return;
+            }
+            imm = getKana(n);
         }
+    }
+
+    function clrIm() {
+        for (let i = 0; i < 25; i++) {
+            im[i] = 0;
+        }
+    }
+
+    function clrIm2() {
+        for (let i = 25; i < 55; i++) {
+            im[i] = 0;
+        }
+    }
+
+    function setIm() {
+        let d = imm;
+        let mask = 0x1000000;
         for (let x = 0; x < 5; x++) {
-            let d = m[x];
             for (let y = 0; y < 5; y++) {
-                im[y * 5 + x] = (d & 0x10 ? bright : 0);
-                d <<= 1;
+                im[x * 5 + y] = (d & mask ? bright : 0);
+                mask >>= 1;
+            }
+        }
+    }
+
+    function setImH() {
+        let of = 25;
+        let x: number;
+        let y: number;
+        let d = imm;
+        let mask = 0x1000000;
+        for (y = 0; y < 5; y++) {
+            im[y + of] = 0;
+        }
+        for (x = 1; x < 6; x++) {
+            for (y = 0; y < 5; y++) {
+                im[x * 5 + y + of] = (d & mask ? bright : 0);
+                mask >>= 1;
+            }
+        }
+    }
+
+    function setImV() {
+        let of = 25;
+        let d = imm;
+        let mask = 0x1000000;
+        for (let x = 0; x < 5; x++) {
+            im[x * 6 + of] = 0;
+            for (let y = 1; y < 6; y++) {
+                im[x * 6 + y + of] = (d & mask ? bright : 0);
+                mask >>= 1;
             }
         }
     }
@@ -71,28 +137,113 @@ namespace hiragana {
     function setKana(): void {
         for (let x = 0; x < 5; x++) {
             for (let y = 0; y < 5; y++) {
-                led.plotBrightness(x, y, im[y * 5 + x]);
+                led.plotBrightness(x, y, im[x * 5 + y]);
             }
         }
     }
 
-    /**
-     * Get number
-     */
-    //% blockId=hiragana_get_number
-    //% block="Get number"
-    export function getNumber(): number {
-        let n = addNumber(2);
-        return n;
+    function shiftLeftIm() {
+        for (let i = 0; i < 50; i++) {
+            im[i] = im[i + 5];
+        }
     }
-    
-    /**
-     * Test mojir
+
+    function shiftUpIm() {
+        let x: number;
+        let y: number;
+        let of = 25;
+        for (y = 0; y < 4; y++) {
+            for (x = 0; x < 5; x++) {
+                im[x * 5 + y] = im[x * 5 + y + 1];
+            }
+        }
+        for (x = 0; x < 5; x++) {
+            im[x * 5 + 4] = im[x * 6 + of];
+        }
+        for (y = 0; y < 5; y++) {
+            for (x = 0; x < 5; x++) {
+                im[x * 6 + y + of] = im[x * 6 + y + 1 + of];
+            }
+        }
+    }
+
+    function mojiScroll() {
+        let n = 6;
+        while (n > 0) {
+            if (dir == DirEnum.Horizontal) {
+                shiftLeftIm();
+            } else {
+                shiftUpIm();
+            }
+            setKana();
+            basic.pause(scroll);
+            n -= 1;
+        }
+    }
+
+   /**
+     * Set t scroll time
+     * @param t scroll time, eg: 200
+     * @param d direction parameter, eg: DirNum.Horizontal
      */
-    //% blockId=hiragana_test_moji
-    //% block="test moji %i %j"
-    export function testMoji(i: number, j: number): number {
-        let n= retNumber(i, j);
-        return n;
+    //% blockId=set_scrolltime block="Set scroll %t %d"
+    //% expandableArgumentMode="toggle"
+    export function setScroll(t: number, d:DirEnum) {
+        scroll = t;
+        dir = d;
+    }
+
+    /**
+     * Set bright
+     * @param b number of bright, eg: 128
+     */
+    //% blockId=set_bright block="Set bright %b"
+    export function setBright(b: number) {
+        if (b <= 255 && b > 0)
+            bright = b;
+    }
+
+    /**
+     * Display Moji
+     * @param s display string here, eg: ""
+     */
+    //% block="Display Moji %s"
+    export function strDisplay(s: string) {
+        let c: string;
+        if (s.length == 1) {
+            searchKana(s.substr(0, 1));
+            setIm();
+            setKana();
+            return;
+        } else {
+            clrIm();
+            if (dir == DirEnum.Horizontal) {
+                for (let i = 0; i < s.length; i++) {
+                    searchKana(s.substr(i, 1));
+                    setImH();
+                    mojiScroll();
+                }
+                clrIm2();
+                mojiScroll();
+            } else if (dir == DirEnum.None) {
+                for (let i = 0; i < s.length; i++) {
+                    searchKana(s.substr(i, 1));
+                    setIm();
+                    setKana();
+                    basic.pause(scroll * 3);
+                }
+                clrIm();
+                setKana();
+            } else if (dir == DirEnum.Vertical) {
+                for (let i = 0; i < s.length; i++) {
+                    for (let j = 25; j < 30; j++) { im[j] = 0; }
+                    searchKana(s.substr(i, 1));
+                    setImV();
+                    mojiScroll();
+                }
+                clrIm2();
+                mojiScroll();
+            }
+        }
     }
 }
