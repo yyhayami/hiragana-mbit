@@ -1,7 +1,7 @@
 {
-    "name": "hiragana",
+    "name": "kana",
     "version": "0.0.1",
-    "description": "Hiragana Display for micro:bit",
+    "description": "KANA Display for micro:bit",
     "license": "MIT",
     "dependencies": {
         "core": "*"

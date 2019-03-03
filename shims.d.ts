@@ -1,2 +1,2 @@
-declare namespace hiragana {
+declare namespace kana {
 }
