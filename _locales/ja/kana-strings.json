@@ -1,7 +1,7 @@
 {
-  "DirEnum.Horizontal|block": "横ス",
-  "DirEnum.Vertical|block": "縦ス",
-  "DirEnum.None|block": "切替",
+  "DirEnum.Horizontal|block": "横スクロール",
+  "DirEnum.Vertical|block": "縦スクロール",
+  "DirEnum.None|block": "切り替え",
   "kana.setScroll|block": "スクロール時間を設定 %t %d",
   "kana.setBright|block": "明るさを設定 %b",
   "kana.showKana|block": "文字列を表示 %s"
