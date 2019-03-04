@@ -10,7 +10,9 @@
         "README.md",
         "kana.ts",
         "shims.d.ts",
-        "kanas.cpp"
+        "kanas.cpp",
+        "_locales/ja/kana-strings.json"
+
     ],
     "testFiles": [
         "test.ts"
