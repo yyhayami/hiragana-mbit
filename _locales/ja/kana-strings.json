@@ -1,4 +1,7 @@
 {
+  "DirNum.Horizontal|block": "横ス",
+  "DirNum.Vertical|block": "縦ス",
+  "DirNum.None|block": "切替",
   "kana.setScroll|block": "スクロール時間を設定 %t %d",
   "kana.setBright|block": "明るさを設定 %b",
   "kana.showKana|block": "文字列を表示 %s"
